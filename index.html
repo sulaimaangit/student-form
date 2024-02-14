@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+</head>
+<body style="background-color: #fd6a6a;">
+    <link rel="stylesheet" href="style.css">
+    <h1 id="head1">Student Form</h1>
+
+    <form id="table1">
+            
+            <label id="namet1">Name</label>
+            <input id="name" type="text" placeholder="Type your name" required>
+            <br>
+            <br>
+            <label id="aget1">Age</label>
+            <input id="age" type="number" placeholder="Your Age" required>
+            <br>
+            <br>
+
+            <label id="gendert1">Gender</label>
+
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label id="malel" for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label id="femalel" for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label id="othersl" for="other">Others</label>
+
+            <br>
+            <br>
+
+            <label id="courset1">Course</label>
+            <select id="course" name="Course" id="Course" required>
+                    <option value="Choose">Choose Your Course</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Python">Python</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+            </select>
+            <br>
+            <br>
+
+            <label id="emailt1">Email</label>
+            <input id="email" type="email" placeholder="abcd@gmail.com" required>
+            <br>
+            <br>
+            <br>
+            <input type="submit" onclick="saves()"  id="save">
+
+    </form>
+        <br>
+        <br>
+
+        <h1 id="head2">Responses</h1>
+        <br>
+        
+        <table id="t2" >
+            <thead>
+                <th id="namet2">Name</th>
+                <th id="aget2">Age</th>
+                <th id="gendert2">Gender</th>
+                <th id="courset2">Course</th>
+                <th id="emailt2">Email</th>
+                <th id="actiont2">Action</th>
+            </thead>
+            <tbody id="table2">
+
+            </tbody>
+        </table>
+        <br>
+        <button onclick="clearres()" id="cleart2">Clear Response</button>
+
+        <script>
+            function saves()
+            {
+            var table1=document.getElementById("table1");
+            var tableres=document.getElementById("table2");
+
+            var name=document.getElementById("name").value;
+            var age=document.getElementById("age").value;
+            var genders=document.getElementsByName("gender");
+            for (var i = 0, length = genders.length; i < length; i++) 
+            {
+            if (genders[i].checked) 
+                {
+                var genderx = genders[i].value;
+                break;
+                }
+            }
+            var course=document.getElementById("course").value;
+            var email=document.getElementById("email").value;
+
+            var newrow=tableres.insertRow();
+            var cell0=newrow.insertCell(0);
+            var cell1=newrow.insertCell(1);
+            var cell2=newrow.insertCell(2);
+            var cell3=newrow.insertCell(3);
+            var cell4=newrow.insertCell(4);
+            var cell5=newrow.insertCell(5);
+
+            cell0.textContent=name;
+            cell1.textContent=age;
+            cell2.textContent=genderx;
+            cell3.textContent=course;
+            cell4.textContent=email;
+            cell5.innerHTML="<button onclick='deleter(this)' id='deleterow'>Delete</button>"
+            
+            document.getElementById("table1").reset();
+            }
+            function deleter(btn)
+            {
+                var row = btn.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+            }
+            function clearres()
+            {
+                var result = confirm("Do you want to clear the response data?");
+
+                if (result) 
+                {
+                    alert("Response has been cleared");
+                    var tableres=document.getElementById("table2")
+                    tableres.innerHTML=''
+                } 
+                
+            }
+        </script>
+
+</body>
+</html>
